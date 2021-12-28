@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="本demo中只有银联支付提供了测试帐号，微信支付以及支付宝支付均需要后端人员根据微信支付/支付宝支付各自订单生成规则生成订单，作为参数传入对应支付api，才能调起支付。" />
+
+    <Button
+        android:id="@+id/unionpay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="银联支付" />
+
+    <Button
+        android:id="@+id/wxpay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="微信支付" />
+
+    <Button
+        android:id="@+id/alipay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="支付宝支付" />
+</LinearLayout>
