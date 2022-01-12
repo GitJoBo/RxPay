@@ -1,4 +1,4 @@
-package com.jobo.rxpay
+package com.jobo.app
 
 import org.junit.Test
 

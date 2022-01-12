@@ -1,7 +1,8 @@
-package com.jobo.ap
+package com.jobo.app
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
@@ -63,13 +64,13 @@ class MainActivity : AppCompatActivity() {
         val wxPay: WXPay = WXPay.getInstance()
         //构造微信订单实体。一般都是由服务端直接返回。
         val wxPayInfoImpl = WXPayInfoImpl()
-        wxPayInfoImpl.setTimestamp("")
-        wxPayInfoImpl.setSign("")
-        wxPayInfoImpl.setPrepayId("")
-        wxPayInfoImpl.setPartnerid("")
-        wxPayInfoImpl.setAppid("")
-        wxPayInfoImpl.setNonceStr("")
-        wxPayInfoImpl.setPackageValue("")
+        wxPayInfoImpl.setTimestamp("1641956869")
+        wxPayInfoImpl.setSign("818EB29ACFEDA26C89EA40156F901EBD")
+        wxPayInfoImpl.setPrepayId("wx121107491674319837744166f00a910000")
+        wxPayInfoImpl.setPartnerid("1399412402")
+        wxPayInfoImpl.setAppid("wxfc3b00c4f77ac6f1")
+        wxPayInfoImpl.setNonceStr("x6Nr2ARff4C0L93u")
+        wxPayInfoImpl.setPackageValue("Sign=WXPay")
         //策略场景类调起支付方法开始支付，以及接收回调。
         RxPay.pay(wxPay, this, wxPayInfoImpl, object : IPayCallback {
             override fun success() {
@@ -77,7 +78,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun failed(code: Int, message: String?) {
-                toast("支付失败")
+                toast("支付失败 code=" + code + "；message=" + message)
             }
 
             override fun cancel() {
@@ -91,7 +92,9 @@ class MainActivity : AppCompatActivity() {
         val aliPay = AliPay()
         //构造支付宝订单实体。一般都是由服务端直接返回。
         val alipayInfoImpl = AlipayInfoImpl()
-        alipayInfoImpl.setOrderInfo("alipay_sdk=alipay-sdk-java-3.7.4.ALL&app_id=2019050964424243&biz_content=%7B%22body%22%3A%22%E4%BA%91%E6%8E%A7%E7%8C%AB%22%2C%22out_trade_no%22%3A%221475641535289749504%22%2C%22product_code%22%3A%22QUICK_MSECURITY_PAY%22%2C%22subject%22%3A%22%E4%BA%91%E6%8E%A7%E7%8C%AB%22%2C%22timeout_express%22%3A%2230m%22%2C%22total_amount%22%3A%224680.0%22%7D&charset=utf-8&format=json&method=alipay.trade.app.pay&notify_url=http%3A%2F%2F122.112.142.215%2Fmedical%2Fpay%2FandroidNotify&sign=kw7Y%2FPfmyH%2FWzI1zVMFMKsOZc3AGffyhSgX466Q4AOCacuvK1t2wkEL2iCBIrr4k%2BJKPYPbit6N0FsdSE1eNUvZATBjKwOOYcxsay3CMHtkMjdgfeOgyiH9%2Bk5e%2BMH3DG0SHRedC6EtCVaJPGuccVxe6Znc8UUe10Fe8U4GE8rRDlVNLAYyxD%2BarMGSAOdGHpbLaVWMWSTt8iw4JIFelTPWjc78zGjgmahwPzQvXPG0Xm6QHBmZxY2lF4JALu4RznyxYty3oZudaZLKgNNS9mQuos8FS22QqAG6QrNQN%2BFkasKTQV2HSjUDci9aXOrcwJSErWLkJaI7Vsk71CJRUKA%3D%3D&sign_type=RSA2&timestamp=2021-12-28+09%3A35%3A32&version=1.0")
+        alipayInfoImpl.setOrderInfo(
+            "alipay_sdk=alipay-sdk-java-3.7.4.ALL&app_id=2019050964424243&biz_content=%7B%22body%22%3A%22%E4%BA%91%E6%8E%A7%E7%8C%AB%22%2C%22out_trade_no%22%3A%221476087785629802496%22%2C%22product_code%22%3A%22QUICK_MSECURITY_PAY%22%2C%22subject%22%3A%22%E4%BA%91%E6%8E%A7%E7%8C%AB%22%2C%22timeout_express%22%3A%2230m%22%2C%22total_amount%22%3A%22560.0%22%7D&charset=utf-8&format=json&method=alipay.trade.app.pay&notify_url=http%3A%2F%2F122.112.142.215%2Fmedical%2Fpay%2FandroidNotify&sign=IfkSDzHP6RZa3TtzOSDr%2FI3WKHRO%2BF%2FXyuwLuG1v0Jn699KxFkDz0w%2B8nTzggguO84v3kt4CrFIclBSVd0wWj1vwaZTcc73KGFnBJU4%2B5ZrDNMKDpCyVxOJVMWU%2F2rZnxA1oXPSUBOHUbPG5prU5HGAwmfIuumCoTA0EyYL6GAXgnPSqZdXn7K%2FDbNjxT1i1QzfaJ%2F79zXf1MqkhcllcItm9gDqXuPoE5YG%2FShoiaFrW%2Bdczowtrsb%2BjSaaQi7rul2IrhcvrO5o7SX%2BSUKOLekoPV%2BeoqvFJliM31%2B6bfo6wnJhBBi9QF8%2BJav9YuaEmPavyJ6FuzTXJ%2FqeA73HeRw%3D%3D&sign_type=RSA2&timestamp=2021-12-29+15%3A08%3A47&version=1.0"
+        )
         //策略场景类调起支付方法开始支付，以及接收回调。
         RxPay.pay(aliPay, this, alipayInfoImpl, object : IPayCallback {
             override fun success() {
@@ -99,6 +102,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun failed(code: Int, message: String?) {
+                Log.d(Companion.TAG, "code:$code;message:$message")
                 toast("支付失败")
             }
 
@@ -110,5 +114,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun toast(context: String) {
         Toast.makeText(this, context, Toast.LENGTH_LONG).show()
+    }
+
+    companion object {
+        private const val TAG = "MainActivity"
     }
 }
