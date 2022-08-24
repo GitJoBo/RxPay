@@ -41,8 +41,8 @@ class MainActivity : AppCompatActivity() {
         val unionPay = UnionPay()
         //构造银联订单实体。一般都是由服务端直接返回。测试时可以用Mode.TEST,发布时用Mode.RELEASE。
         val unionPayInfoImpl = UnionPayInfoImpl()
-        unionPayInfoImpl.setTn("625623784203097901200")
-        unionPayInfoImpl.setMode(com.xgr.unionpay.unionpay.Mode.TEST)
+        unionPayInfoImpl.tn = "625623784203097901200"
+        unionPayInfoImpl.mode = com.xgr.unionpay.unionpay.Mode.TEST
         //策略场景类调起支付方法开始支付，以及接收回调。
         RxPay.pay(unionPay, this, unionPayInfoImpl, object : IPayCallback {
             override fun success() {
@@ -64,13 +64,13 @@ class MainActivity : AppCompatActivity() {
         val wxPay: WXPay = WXPay.getInstance()
         //构造微信订单实体。一般都是由服务端直接返回。
         val wxPayInfoImpl = WXPayInfoImpl()
-        wxPayInfoImpl.setTimestamp("1641956869")
-        wxPayInfoImpl.setSign("818EB29ACFEDA26C89EA40156F901EBD")
-        wxPayInfoImpl.setPrepayId("wx121107491674319837744166f00a910000")
-        wxPayInfoImpl.setPartnerid("1399412402")
-        wxPayInfoImpl.setAppid("wxfc3b00c4f77ac6f1")
-        wxPayInfoImpl.setNonceStr("x6Nr2ARff4C0L93u")
-        wxPayInfoImpl.setPackageValue("Sign=WXPay")
+        wxPayInfoImpl.timestamp = "1641956869"
+        wxPayInfoImpl.sign = "818EB29ACFEDA26C89EA40156F901EBD"
+        wxPayInfoImpl.prepayId = "wx121107491674319837744166f00a910000"
+        wxPayInfoImpl.partnerid = "1399412402"
+        wxPayInfoImpl.appid = "wxfc3b00c4f77ac6f1"
+        wxPayInfoImpl.nonceStr = "x6Nr2ARff4C0L93u"
+        wxPayInfoImpl.packageValue = "Sign=WXPay"
         //策略场景类调起支付方法开始支付，以及接收回调。
         RxPay.pay(wxPay, this, wxPayInfoImpl, object : IPayCallback {
             override fun success() {
